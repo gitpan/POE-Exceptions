@@ -10,3 +10,4 @@ lib/POE/Kernel/Exception.pm
 lib/POE/Session/Exception.pm
 t/abdigation.t
 t/signal_handler.t
+META.yml                                Module meta-data (added by MakeMaker)

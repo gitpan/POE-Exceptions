@@ -3,10 +3,11 @@
 use warnings;
 use strict;
 
-use Test::More qw(no_plan);
-BEGIN { use_ok('POE::Exceptions'); } 
+use Test::More tests => 4;
+BEGIN { 
+    use_ok('POE::Exceptions'); 
+} 
 use POE;
-
 eval {
 
 POE::Session::Exception->create
@@ -26,7 +27,8 @@ POE::Session::Exception->create
       },
       death_redieing => sub {
         ok(1,"REDIEING EXCEPTION: $_[ARG1]");
-        die "dieing from a death handler";
+        $_[KERNEL]->sig_handled();
+        die "dying from a death handler";
       },
       _stop => sub {
         warn "Termination";
@@ -37,4 +39,5 @@ POE::Session::Exception->create
 $poe_kernel->run();
 };
 
-ok($@, 'double exception caught');
+
+like($@, qr/double exception fault: this die will be handled, too/, 'double exception caught');

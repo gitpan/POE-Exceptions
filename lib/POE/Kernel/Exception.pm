@@ -8,33 +8,33 @@ use warnings;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = (qw($Revision: 1.3 $))[1];
+$VERSION = (qw($Revision: 1.7 $))[1];
 
 BEGIN {
-  $POE::Kernel::poe_kernel = bless $POE::Kernel::poe_kernel, __PACKAGE__;
-  $POE::Kernel::poe_kernel->_initialize_kernel_session();
-
-  eval 'sub EV_TYPE () { ' . POE::Kernel::EV_TYPE() . ' }';
-  eval 'sub EV_ARGS () { ' . POE::Kernel::EV_ARGS() . ' }';
-  eval 'sub ET_SIGNAL () { ' . POE::Kernel::ET_SIGNAL() . ' }';
+    eval 'sub EV_TYPE () { ' . POE::Kernel::EV_TYPE() . ' }';
+    eval 'sub EV_ARGS () { ' . POE::Kernel::EV_ARGS() . ' }';
+    eval 'sub ET_SIGNAL () { ' . POE::Kernel::ET_SIGNAL() . ' }';
 };
 
 sub _dispatch_event {
-  my $self = shift;
-  my ($event_type, $args) = @_[EV_TYPE, EV_ARGS];
-
-  my $retval = $self->SUPER::_dispatch_event(@_);
-
-  if ($event_type & ET_SIGNAL) {
-    if ($args->[0] eq 'DIE') {
-      if ($@) {
-        die "double exception: $@";
-      }
-      elsif (!$retval) {
-        die "unhandled exception: $args->[1]";
-      }
+    my $self = shift;
+    my ($event_type, $args) = @_[EV_TYPE, EV_ARGS];
+    my $retval = $self->SUPER::_dispatch_event(@_);
+    if ($event_type & ET_SIGNAL) {
+        my $signal = $args->[0];
+        my $msg = $args->[1];
+        my @responses = $POE::Kernel::poe_kernel->_data_sig_handled_status();
+          
+        if ($signal eq 'DIE') {
+            if($POE::Session::Exception::DEATH) {
+                die "double exception fault: $msg";
+            }
+            unless($responses[2]) {  # equiv to sig_handled();
+                die "unhandled exception: $msg";
+            }
+        }
     }
-  }
+    return $retval;
 }
 
 =head1 NAME
@@ -47,11 +47,11 @@ Matt Cashner (eek+cpan@eekeek.org)
 
 =head1 DATE
 
-$Date: 2003/06/24 02:14:46 $
+$Date: 2003/10/16 00:54:13 $
 
 =head1 REVISION
 
-$Revision: 1.3 $
+$Revision: 1.7 $
 
 =head1 NOTE
 

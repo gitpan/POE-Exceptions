@@ -6,21 +6,30 @@ use base qw(POE::Session);
 
 use warnings;
 use strict;
-use vars qw($VERSION);
+use vars qw($VERSION $DEATH);
 
-$VERSION = (qw($Revision: 1.2 $))[1];
+$VERSION = (qw($Revision: 1.5 $))[1];
+
+sub create {
+    my $class = shift;
+    $POE::Kernel::poe_kernel = bless $POE::Kernel::poe_kernel, 'POE::Kernel::Exception';
+    $POE::Kernel::poe_kernel->_initialize_kernel_session();
+    return $class->SUPER::create(@_);
+}
+
 
 sub _invoke_state {
     my $self = shift;
-    my $retval =
-      eval {
+    my $retval = eval {
         $self->SUPER::_invoke_state(@_);
-      };
+    };
 
     if($@) {
-      $poe_kernel->signal($self,'DIE',$@);
+        $DEATH = 1;
+        $poe_kernel->signal($self,'DIE',$@);
+    } elsif ($_[1] ne '_signal') {
+        $DEATH = 0;
     }
-
     return $retval;
 }
 
@@ -34,11 +43,11 @@ Matt Cashner (eek+cpan@eekeek.org)
 
 =head1 DATE
 
-$Date: 2002/05/28 03:50:48 $
+$Date: 2003/10/16 00:54:13 $
 
 =head1 REVISION
 
-$Revision: 1.2 $
+$Revision: 1.5 $
 
 =head1 NOTE
 

@@ -18,9 +18,10 @@ POE::Exceptions - POE class for handling exceptions
         inline_states => {
             _start => sub { print 'START';
                             $_[KERNEL]->sig('DIE','death_handled');
-                            return 1; 
                           },
-            death_handled => sub { print 'EXCEPTION CAUGHT' },
+            death_handled => sub { print 'EXCEPTION CAUGHT' 
+                                   $_[KERNEL]->sig_handled();
+                                 },
             _stop => { print 'END' }
         }
     );
