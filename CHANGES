@@ -1,14 +1,25 @@
-============================
-2002-08-30 23:43:24 untagged
-============================
 
-  2002-08-30 23:37:42; sungo; MANIFEST 1.2
+=========================
+2003-06-24 02:14:46 V0_02
+=========================
 
-	update manifest for removed changelog 
+  2003-06-24 02:14:46 by sungo; Makefile.PL 1.2; VERSION 1.2;
+  lib/POE/Kernel/Exception.pm 1.3; t/abdigation.t 1.2;
+  t/signal_handler.t 1.2
 
-  2002-08-30 23:43:24; sungo; MANIFEST 1.3
+    upgrade to work with newer poe. up version number. 
 
-	update manifest for new CHANGES file 
+  2002-08-30 23:45:52 by sungo; CHANGES 1.1
+
+    add new CHANGES file 
+
+  2002-08-30 23:43:24 by sungo; MANIFEST 1.3
+
+    update manifest for new CHANGES file 
+
+  2002-08-30 23:37:42 by sungo; MANIFEST 1.2
+
+    update manifest for removed changelog 
 
 =========================
 2002-08-30 23:23:29 V0_01

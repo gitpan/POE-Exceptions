@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# $Id: Makefile.PL,v 1.1.1.1 2002/05/28 02:53:04 matt Exp $
+# $Id: Makefile.PL,v 1.2 2003/06/24 02:14:45 sungo Exp $
 
 use ExtUtils::MakeMaker;
 use File::Find;
@@ -25,7 +25,7 @@ WriteMakefile
     test => {
             TESTS => join " ", @tests
     }, 
-    PREREQ_PM      => { 'POE' => '.19',
+    PREREQ_PM      => { 'POE' => '0.25',
                         'Test::More' => '0',
                         'Carp' => '0',
                       },

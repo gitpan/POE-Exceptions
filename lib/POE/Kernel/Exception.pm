@@ -8,21 +8,20 @@ use warnings;
 use strict;
 use vars qw($VERSION);
 
-$VERSION = (qw($Revision: 1.2 $))[1];
+$VERSION = (qw($Revision: 1.3 $))[1];
 
 BEGIN {
-  # Cheezy rebless hack to subclass POE::Kernel instance.
   $POE::Kernel::poe_kernel = bless $POE::Kernel::poe_kernel, __PACKAGE__;
+  $POE::Kernel::poe_kernel->_initialize_kernel_session();
 
-  # Cheezy import hack.  TODO: Make Kernel constants macros again.
-  eval 'sub ST_TYPE () { ' . POE::Kernel::ST_TYPE() . ' }';
-  eval 'sub ST_ARGS () { ' . POE::Kernel::ST_ARGS() . ' }';
+  eval 'sub EV_TYPE () { ' . POE::Kernel::EV_TYPE() . ' }';
+  eval 'sub EV_ARGS () { ' . POE::Kernel::EV_ARGS() . ' }';
   eval 'sub ET_SIGNAL () { ' . POE::Kernel::ET_SIGNAL() . ' }';
 };
 
 sub _dispatch_event {
   my $self = shift;
-  my ($event_type, $args) = @_[ST_TYPE, ST_ARGS];
+  my ($event_type, $args) = @_[EV_TYPE, EV_ARGS];
 
   my $retval = $self->SUPER::_dispatch_event(@_);
 
@@ -48,11 +47,11 @@ Matt Cashner (eek+cpan@eekeek.org)
 
 =head1 DATE
 
-$Date: 2002/05/28 03:50:48 $
+$Date: 2003/06/24 02:14:46 $
 
 =head1 REVISION
 
-$Revision: 1.2 $
+$Revision: 1.3 $
 
 =head1 NOTE
 

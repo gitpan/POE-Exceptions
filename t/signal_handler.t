@@ -19,7 +19,7 @@ POE::Session::Exception->create
         ok(1,"HANDLED EXCEPTION: $_[ARG1]");
         $_[KERNEL]->sig('DIE','death_redieing');
         $_[KERNEL]->yield( "die_again" );
-        return 1;
+        $_[KERNEL]->sig_handled();
       },
       die_again => sub {
         die "this die will be handled, too";
