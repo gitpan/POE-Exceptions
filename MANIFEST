@@ -1,0 +1,11 @@
+CHANGES
+INSTALL
+MANIFEST			This list of files
+Makefile.PL
+README
+VERSION
+lib/POE/Exceptions.pm
+lib/POE/Kernel/Exception.pm
+lib/POE/Session/Exception.pm
+t/abdigation.t
+t/signal_handler.t
