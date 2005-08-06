@@ -4,6 +4,7 @@ CVS
 \.rej$
 \.swo$
 \.swp$
+.svn
 ^Makefile$
 ^Makefile\.old$
 ^\.

@@ -1,33 +1,17 @@
-#!/usr/bin/perl
-# $Id: Makefile.PL,v 1.2 2003/06/24 02:14:45 sungo Exp $
+# $Id: Makefile.PL 526 2005-08-06 20:33:24Z sungo $
 
-use ExtUtils::MakeMaker;
-use File::Find;
+use inc::Module::Install;
 
-my @tests;
-sub wanted { /\.t$/ && push @tests, $_ }
-find({ wanted => \&wanted , no_chdir => 1}, 't/');
-@tests = sort @tests;
-WriteMakefile
-  ( NAME           => 'POE::Exceptions',
+name           ('POE-Exceptions');
+author         ('Matt Cashner (sungo@pobox.com)');
+version_from   ('VERSION');
+license        ('bsd');
 
-    ( ($^O eq 'MacOS')
-      ? ()
-      : ( AUTHOR   => 'Matt Cashner (eek+cpan@eekeek.org)',
-          ABSTRACT => 'Exception Handling for POE',
-        )
-    ),
+requires       ('POE');
+requires       ('Test::More');
+requires       ('Carp');
 
-    VERSION_FROM   => 'VERSION',
-    dist           => { 'COMPRESS' => 'gzip -9f',
-                        'SUFFIX'   => 'gz',
-                      },
-    test => {
-            TESTS => join " ", @tests
-    }, 
-    PREREQ_PM      => { 'POE' => '0.25',
-                        'Test::More' => '0',
-                        'Carp' => '0',
-                      },
-  );
+sign           (1);
+
+WriteAll();
 

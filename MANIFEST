@@ -1,13 +1,24 @@
-CHANGES
+Changes
+inc/Module/Install.pm
+inc/Module/Install/Base.pm
+inc/Module/Install/Can.pm
+inc/Module/Install/Fetch.pm
+inc/Module/Install/Makefile.pm
+inc/Module/Install/Metadata.pm
+inc/Module/Install/Win32.pm
+inc/Module/Install/WriteAll.pm
 INSTALL
-MANIFEST			This list of files
-MANIFEST.SKIP
-Makefile.PL
-README
-VERSION
 lib/POE/Exceptions.pm
 lib/POE/Kernel/Exception.pm
 lib/POE/Session/Exception.pm
+LICENSE
+Makefile.PL
+MANIFEST			This list of files
+MANIFEST.SKIP
+META.yml			Module meta-data (added by MakeMaker)
+README
+SIGNATURE
+t/000-signature.t
 t/abdigation.t
 t/signal_handler.t
-META.yml                                Module meta-data (added by MakeMaker)
+VERSION

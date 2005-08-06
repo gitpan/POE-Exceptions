@@ -1,12 +1,13 @@
-#XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
-name:         POE-Exceptions
-version:      0.03
-version_from: VERSION
-installdirs:  site
-requires:
-    Carp:                          0
-    POE:                           0.25
-    Test::More:                    0
-
+name: POE-Exceptions
+version: 0.04
+author: Matt Cashner (sungo@pobox.com)
+license: bsd
 distribution_type: module
-generated_by: ExtUtils::MakeMaker version 6.13
+requires:
+  POE: 0
+  Test::More: 0
+  Carp: 0
+no_index:
+  directory:
+    - inc
+generated_by: Module::Install version 0.37
