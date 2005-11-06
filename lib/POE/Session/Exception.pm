@@ -8,7 +8,7 @@ use warnings;
 use strict;
 use vars qw($DEATH);
 
-our $VERSION = '1.'.sprintf "%04d", (qw($Rev: 528 $))[1];
+our $VERSION = '2.'.sprintf "%04d", (qw($Rev: 528 $))[1];
 
 sub create {
     my $class = shift;

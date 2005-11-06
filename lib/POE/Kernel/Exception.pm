@@ -7,7 +7,7 @@ use base qw(POE::Kernel);
 use warnings;
 use strict;
 
-our $VERSION = '1.'.sprintf "%04d", (qw($Rev: 528 $))[1];
+our $VERSION = '2.'.sprintf "%04d", (qw($Rev: 528 $))[1];
 
 BEGIN {
 	eval 'sub EV_TYPE () { ' . POE::Kernel::EV_TYPE() . ' }';
