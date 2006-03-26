@@ -5,7 +5,7 @@ use warnings;
 
 use POE::Session::Exception;
 
-our $VERSION = '2.'.sprintf "%04d", (qw($Rev: 1 $))[1];
+our $VERSION = '3.'.sprintf "%04d", (qw($Rev: 8 $))[1];
 
 1;
 __END__
@@ -56,11 +56,11 @@ exception, POE::Exceptions will shut the program down and bail out.
 
 =head1 DATE
 
-$Date: 2006-03-19 10:01:04 -0500 (Sun, 19 Mar 2006) $
+$Date: 2006-03-26 17:13:33 -0500 (Sun, 26 Mar 2006) $
 
 =head1 REVISION
 
-$Revision: 1 $
+$Revision: 8 $
 
 =head1 AUTHOR
 
