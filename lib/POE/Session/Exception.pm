@@ -1,4 +1,15 @@
+# $Id: Exception.pm 629 2005-12-11 23:44:13Z sungo $
 package POE::Session::Exception;
+
+=pod
+
+=head1 NAME
+
+POE::Session::Exception - POE::Session extension for handling exceptions
+
+=begin devel
+
+=cut
 
 use POE;
 
@@ -8,7 +19,14 @@ use warnings;
 use strict;
 use vars qw($DEATH);
 
-our $VERSION = '2.'.sprintf "%04d", (qw($Rev: 528 $))[1];
+our $VERSION = '2.'.sprintf "%04d", (qw($Rev: 1 $))[1];
+
+=head2 create
+
+We override POE::Session::create so we can install our version of the
+kernel.
+
+=cut
 
 sub create {
     my $class = shift;
@@ -33,21 +51,24 @@ sub _invoke_state {
     return $retval;
 }
 
-=head1 NAME
+1;
+__END__
 
-POE::Session::Exception - POE::Session extension for handling exceptions
+=end devel
 
 =head1 AUTHOR
 
 Matt Cashner (sungo@pobox.com)
 
+See L<http://perlwhore.com> for the latest on all of sungo's modules.
+
 =head1 DATE
 
-$Date: 2005-08-06 16:38:12 -0400 (Sat, 06 Aug 2005) $
+$Date: 2006-03-19 10:01:04 -0500 (Sun, 19 Mar 2006) $
 
 =head1 REVISION
 
-$Revision: 528 $
+$Revision: 1 $
 
 =head1 NOTE
 
@@ -85,4 +106,3 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =cut
 
-1;

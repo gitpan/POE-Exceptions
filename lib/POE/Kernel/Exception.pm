@@ -1,4 +1,15 @@
+# $Id: Exception.pm 629 2005-12-11 23:44:13Z sungo $
 package POE::Kernel::Exception;
+
+=pod
+
+=head1 NAME
+
+POE::Kernel::Exception - POE::Kernel extension for handling exceptions
+
+=begin devel
+
+=cut
 
 use POE;
 
@@ -7,7 +18,18 @@ use base qw(POE::Kernel);
 use warnings;
 use strict;
 
-our $VERSION = '2.'.sprintf "%04d", (qw($Rev: 528 $))[1];
+our $VERSION = '2.'.sprintf "%04d", (qw($Rev: 1 $))[1];
+
+=head2 EV_TYPE
+
+=head2 EV_ARGS
+
+=head2 ET_SIGNAL
+
+In order to properly override C<_dispatch_event>, we have to pull in some
+constants from L<POE::Kernel>.
+
+=cut
 
 BEGIN {
 	eval 'sub EV_TYPE () { ' . POE::Kernel::EV_TYPE() . ' }';
@@ -41,21 +63,24 @@ sub _dispatch_event {
 	return $retval;
 }
 
-=head1 NAME
+1;
+__END__
 
-POE::Kernel::Exception - POE::Kernel extension for handling exceptions
+=pod
 
 =head1 AUTHOR
 
 Matt Cashner (sungo@pobox.com)
 
+See L<perlwhore.com> for the latest on all of sungo's modules.
+
 =head1 DATE
 
-$Date: 2005-08-06 16:38:12 -0400 (Sat, 06 Aug 2005) $
+$Date: 2006-03-19 10:01:04 -0500 (Sun, 19 Mar 2006) $
 
 =head1 REVISION
 
-$Revision: 528 $
+$Revision: 1 $
 
 =head1 NOTE
 
@@ -93,4 +118,4 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 =cut
 
-1;
+# sungo // vim: ts=4 sw=4 et

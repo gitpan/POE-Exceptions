@@ -1,13 +1,16 @@
 name: POE-Exceptions
-version: 0.0401
+version: 0.05
 author: Matt Cashner (sungo@pobox.com)
 license: bsd
 distribution_type: module
+build_requires:
+  Test::Distribution: 0
+  Test::Pod::Coverage: 0
+  Module::Signature: 0
 requires:
   POE: 0
   Test::More: 0
-  Carp: 0
 no_index:
   directory:
     - inc
-generated_by: Module::Install version 0.37
+generated_by: Module::Install version 0.36
