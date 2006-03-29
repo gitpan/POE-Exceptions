@@ -16,7 +16,6 @@ MANIFEST			This list of files
 MANIFEST.SKIP
 META.yml
 README
-SIGNATURE
 t/00-distribution.t
 t/abdigation.t
 t/signal_handler.t
